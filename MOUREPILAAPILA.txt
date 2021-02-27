@@ -1,0 +1,101 @@
+
+
+
+
+
+
+//Programa Principal
+//Aquesta funcio llegeix per pantalla el numero de files i el numero de columnes I LA mida del bloc
+1 PRINTF 1,’\n Entra numero files: ‘
+INPUT N
+PRINTF 1,’\n El valor que has posat=%d‘,N
+IF N<0 THEN 1
+2 PRINTF 1,’\n Entra numero colmunes: ‘
+INPUT M
+PRINTF 1,’\n El valor que has posat=%d‘,M
+IF M<0 THEN 2
+3 PRINTF 1,’\n Entra BASE : ‘
+INPUT B
+PRINTF 1,’\n El valor que has posat=%d‘,B
+IF B<0 THEN 3
+4 PRINTF 1,’\n Entra DEPTH : ‘
+INPUT D
+PRINTF 1,’\n El valor que has posat=%d‘,D
+IF D<0 THEN 4
+5 PRINTF 1,’\n Entra HEIGHT : ‘
+INPUT H
+PRINTF 1,’\n El valor que has posat=%d‘,H
+IF H<0 THEN 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//aquest funcio mou una pila de un punt a un altre
+//sh'ha de tenir e compte els angles es a dir, el angle que fa respecte z i el angle que te respecte el plano
+//es una funcio de la qual se li pasen DOS PUNTS en la array P i ella mateixa fa lo q toca
+//Se suposa que tenim variables globals que serien N files, M columnes i VOP velocitat 
+//d'operació I VMIN que es la velocitat de aproximació fina
+
+
+!I=0
+!DZ1=(N+1)*H 	//altura d'aproapament
+
+READY
+
+DO
+
+	SPEED VOP
+	APPRO P[1],DZ1
+	OPEN 50
+	FINISH
+
+	SPEED VMIN
+	!DZ2=(N-1-I)*H		// altura del bloc
+	APPRO P[1],DZ2,S	// Es mou cap al bloc de dalt de top en linia recta pa evitar chocar
+	CLOSE 50
+	FINISH
+	DEPART P[1],DZ1,S
+
+	SPEED VOP
+	APPRO P[2],DZ1
+
+	SPEED VMIN
+	!DZ2=(I)*H		// altura del bloc
+	APPRO P[2],DZ2,S
+	OPEN 50
+	FINISH
+	DEPART P[2],DZ1,S
+
+	SPEED VOP
+	++I
+WHILE I<N
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
